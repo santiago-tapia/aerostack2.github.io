@@ -16,3 +16,4 @@ Currently, the following aerial platforms are supported:
   _crazyflie/index.rst
   _ryze_tello/index.rst
   _dji/index.rst
+  _dji_psdk/index.rst

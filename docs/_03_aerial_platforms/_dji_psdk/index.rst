@@ -1,7 +1,7 @@
-.. _aerial_platform_dji_matrice:
+.. _aerial_platform_dji_PSDK:
 
 ==================
-DJI Matrice Series
+DJI Payload SDK
 ==================
 
 .. contents:: Table of Contents
@@ -9,43 +9,78 @@ DJI Matrice Series
    :local:
 
 
-
-.. _aerial_platform_dji_matrice_introduction:
+.. _aerial_platform_dji_psdk_introduction:
 
 ------------
 Introduction
 ------------
 
-DJI Matrice Series using `DJI Onboard SDK <https://github.com/dji-sdk/Onboard-SDK>`_ has compatibility with DJI M210 V2, M210 RTX V2 and M300 RTK.
+DJI Drones using `DJI Payload SDK <https://github.com/dji-sdk/Payload-SDK>`_.
 
-.. figure:: resources/DJI_M300.jpg
+See compatibility information of Payload-SDK at: `DJI Payload SDK documentation <https://developer.dji.com/doc/payload-sdk-tutorial/en/>`_.
+
+.. figure:: ../_dji/resources/DJI_M300.jpg
    :scale: 15
    :class: with-shadow
 
-
-
-.. _aerial_platform_dji_matrice_installation:
+.. _aerial_platform_dji_psdk_installation:
 
 ------------
 Installation
 ------------
 
+Before installing the software you will need to have the right hardware devices and connections, 
+follow the instructions at: `Aircraft Hardware Connection <https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/device-connect.html>`
 
-
-.. _aerial_platform_dji_matrice_installation_package:
+.. _aerial_platform_dji_psdk_installation_package:
 
 Install platform package
 ========================
 
 * For binary installation, install by running:
 
-.. code-block:: bash
+.. warning:: This package is not available for binary installation yet.
 
-   sudo apt install ros-humble-as2-platform-dji-osdk
+* For source installation: 
 
-* For source installation, clone Aerostack2 repository into your workspace and build it. See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`.
+  1. Install Aerostack2 `Link <../../_00_getting_started/index.html>`_.
+  2. Install dependencies (See below).
 
-.. _aerial_platform_dji_matrice_installation_conection:
+.. _aerial_platform_dji_psdk_dependencies_install:
+
+Install dependencies
+^^^^^^^^^^^^^^^^^^^^^
+
+Aerostack PSDK platform depends on the PSDK library and a ROS2 node wrapper, you could either
+try to install PSDK library and then the wrapper or skip the PSDK library installation and follow
+the instructions to install directly the wrapper. The main difference is that you have to fill up
+the configuration files to compile the examples from PSDK but this information is already used 
+by ROS2 parameters in the wrapper in a yaml file. 
+
+* Install PSDK from DJI.
+
+This package depends on DJI - PSDK library headers and binaries available at:
+`DJI Payload SDK library <https://github.com/dji-sdk/Payload-SDK>`_. You should:
+
+1. Get an application license.
+2. Clone or download the repository.
+3. Fill up PSDK license information at 
+4. Build the example.
+5. Run it.
+
+.. attention:: Please note the dependencies of the PSDK itself. 
+
+You should have got the example running before continue. But, you might find that building
+the wrapper is easier due to some enhancements in the CMakeList.txt in the wrapper. 
+
+* Install PSDK wrapper by `Unmanned Life <https://unmanned.life/>`. 
+
+Unmanned life wrapper for PSDK is a ROS2 node that forwards ROS2 communication to/from PSDK API. 
+
+1. Get the sources and installation instructions at: `PSDK wrapper <https://github.com/umdlife/psdk_ros2>`
+2. 
+
+.. _aerial_platform_dji_psdk_installation_conection:
 
 Setup connection with DJI Matrice
 =================================
@@ -54,7 +89,7 @@ See `DJI Device Connection tutorial <https://developer.dji.com/onboard-sdk/docum
 
 
 
-.. _aerial_platform_dji_matrice_as2_common_interface:
+.. _aerial_platform_dji_psdk_as2_common_interface:
 
 ---------------------------
 Aerostack2 Common Interface
@@ -64,7 +99,7 @@ For more details about platform control modes and sensors, see :ref:`Aerostack2 
 
 
 
-.. _aerial_platform_dji_matrice_as2_common_interface_control_modes:
+.. _aerial_platform_dji_psdk_as2_common_interface_control_modes:
 
 Control Modes
 =============
@@ -90,7 +125,7 @@ These are supported control modes:
 
 
 
-.. _aerial_platform_dji_matrice_as2_common_interface_sensors:
+.. _aerial_platform_dji_psdk_as2_common_interface_sensors:
 
 Sensors
 =======
@@ -119,7 +154,7 @@ These are supported sensors:
 
 
 
-.. _aerial_platform_dji_matrice_platform_launch:
+.. _aerial_platform_dji_psdk_platform_launch:
 
 ---------------
 Platform Launch
