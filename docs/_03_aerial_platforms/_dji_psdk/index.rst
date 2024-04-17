@@ -32,6 +32,8 @@ Installation
 Before installing the software you will need to have the right hardware devices and connections, 
 follow the instructions at: `Aircraft Hardware Connection <https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/device-connect.html>`
 
+.. warning:: This package and some of its dependencies are experimental, try anything in simulation before go to a real scenario.
+
 .. _aerial_platform_dji_psdk_installation_package:
 
 Install platform package
@@ -55,49 +57,56 @@ Aerostack PSDK platform depends on the PSDK library and a ROS2 node wrapper, you
 try to install PSDK library and then the wrapper or skip the PSDK library installation and follow
 the instructions to install directly the wrapper. The main difference is that you have to fill up
 the configuration files to compile the examples from PSDK but this information is already used 
-by ROS2 parameters in the wrapper in a yaml file. 
+by means of ROS2 parameters in the wrapper in a yaml file. 
 
-* Install PSDK from DJI.
+Install PSDK from DJI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This package depends on DJI - PSDK library headers and binaries available at:
 `DJI Payload SDK library <https://github.com/dji-sdk/Payload-SDK>`_. You should:
 
-1. Get an application license.
-2. Clone or download the repository.
-3. Fill up PSDK license information at 
-4. Build the example.
-5. Run it.
+  1. Get an application license.
+  2. Clone or download the repository.
+  3. Fill up PSDK license information at file `dji_sdk_app_info.h` in the corresponding path depending on your platform.  
+  4. Build the example.
+  5. Setup the simulation.
+  6. Run it.
 
 .. attention:: Please note the dependencies of the PSDK itself. 
 
 You should have got the example running before continue. But, you might find that building
-the wrapper is easier due to some enhancements in the CMakeList.txt in the wrapper. 
+the wrapper is easier due to some enhancements in the CMakeLists.txt to build the software. 
 
-* Install PSDK wrapper by `Unmanned Life <https://unmanned.life/>`. 
+Install PSDK wrapper 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Unmanned life wrapper for PSDK is a ROS2 node that forwards ROS2 communication to/from PSDK API. 
+`Unmanned Life <https://unmanned.life/>`_ wrapper for PSDK is a ROS2 node that forwards ROS2 communication to/from PSDK API. 
 
-1. Get the sources and installation instructions at: `PSDK wrapper <https://github.com/umdlife/psdk_ros2>`
-2. 
+  1. Get the sources and installation instructions at: `PSDK wrapper <https://github.com/umdlife/psdk_ros2>`_
+  2. Fill up PSDK license at yaml file. 
+  3. Set up simulation.
+  4. Run the node. 
 
-.. _aerial_platform_dji_psdk_installation_conection:
+.. warning:: When running the node, mind that it is a managed node, you have to activate it. 
+  Futhermore, after activating you have to enter TODO mode to control the drone.
 
-Setup connection with DJI Matrice
-=================================
+Install the platform package
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-See `DJI Device Connection tutorial <https://developer.dji.com/onboard-sdk/documentation/quickstart/device-connection.html>`_ for connect onboard computer with Aerostack2 to DJI Matrice aircracft.
+Download the sources from: `AS2 PSDK platform <https://github.com/aerostack2/as2_platform_dji_psdk>`_
 
+1. Build the node
+2. Run it.
 
+The as2 platform node will launch the PSDK wrapper, activate it and set the mode to control the drone. 
 
-.. _aerial_platform_dji_psdk_as2_common_interface:
+.. _aerial_platform_dji_psdk_common_interface:
 
 ---------------------------
 Aerostack2 Common Interface
 ---------------------------
 
 For more details about platform control modes and sensors, see :ref:`Aerostack2 Aerial Platform Concepts <as2_concepts_aerial_platform>`.
-
-
 
 .. _aerial_platform_dji_psdk_as2_common_interface_control_modes:
 
@@ -119,20 +128,19 @@ These are supported control modes:
    * - Speed
      - Speed
      - ENU
-   * - Speed
-     - Angle
-     - ENU
-
-
 
 .. _aerial_platform_dji_psdk_as2_common_interface_sensors:
 
 Sensors
 =======
 
+Since the wrapper is already publishing the sensor measurements as ROS2 topics, all the 
+supported sensors at the PSDK wrapper are also supported. Besides, some other sensor values
+are generated to provide compatibility with the rest of AS2 nodes.
+
 These are supported sensors:
   
-.. list-table:: Sensors DJI OSDK Platform
+.. list-table:: Sensors DJI PSDK Platform
    :widths: 50 50 50
    :header-rows: 1
 
