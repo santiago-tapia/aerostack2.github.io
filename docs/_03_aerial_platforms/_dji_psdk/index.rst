@@ -15,9 +15,9 @@ DJI Payload SDK
 Introduction
 ------------
 
-DJI Drones using `DJI Payload SDK <https://github.com/dji-sdk/Payload-SDK>`_.
+`DJI Payload SDK <https://github.com/dji-sdk/Payload-SDK>`_ is the lastest api for DJI Drones. 
 
-See compatibility information of Payload-SDK at: `DJI Payload SDK documentation <https://developer.dji.com/doc/payload-sdk-tutorial/en/>`_.
+Check DJI Drones using Payload-SDK and see compatibility information of Payload-SDK at: `DJI Payload SDK documentation <https://developer.dji.com/doc/payload-sdk-tutorial/en/>`_.
 
 .. figure:: ../_dji/resources/DJI_M300.jpg
    :scale: 15
@@ -57,7 +57,7 @@ Aerostack PSDK platform depends on the PSDK library and a ROS2 node wrapper, you
 try to install PSDK library and then the wrapper or skip the PSDK library installation and follow
 the instructions to install directly the wrapper. The main difference is that you have to fill up
 the configuration files to compile the examples from PSDK but this information is already used 
-by means of ROS2 parameters in the wrapper in a yaml file. 
+by means of ROS2 parameters in the wrapper in a yaml file.
 
 Install PSDK from DJI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,7 +82,11 @@ Install PSDK wrapper
 
 `Unmanned Life <https://unmanned.life/>`_ wrapper for PSDK is a ROS2 node that forwards ROS2 communication to/from PSDK API. 
 
-  1. Get the sources and installation instructions at: `PSDK wrapper <https://github.com/umdlife/psdk_ros2>`_
+The original sources are at `PSDK wrapper <https://github.com/umdlife/psdk_ros2>`_, but
+we need some minor differences, so we use a fork at: `PSDK Wrapper fork<https://github.com/RPS98/psdk_ros2>`_
+
+  1. Get the sources and installation instructions.
+  2. Check out `PSDK Wrapper fork RPS98_devel branch<https://github.com/RPS98/psdk_ros2/tree/RPS98_devel>`_.  
   2. Fill up PSDK license at yaml file. 
   3. Set up simulation.
   4. Run the node. 
@@ -90,12 +94,17 @@ Install PSDK wrapper
 .. warning:: When running the node, mind that it is a managed node, you have to activate it. 
   Futhermore, after activating you have to enter TODO mode to control the drone.
 
+Install Aerostack2  
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. attention:: Since PSDK as2 platform includes gimbal control, it needs aerostack2 v.1.0.9 or later. 
+
 Install the platform package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Download the sources from: `AS2 PSDK platform <https://github.com/aerostack2/as2_platform_dji_psdk>`_
 
-1. Build the node
+1. Build the node.
 2. Run it.
 
 The as2 platform node will launch the PSDK wrapper, activate it and set the mode to control the drone. 
